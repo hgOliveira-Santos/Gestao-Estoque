@@ -13,7 +13,7 @@ class usuáriosBD():
         self.conectarBD()
         self.criptografarSenha()
 
-    def conectarBD(self):
+    def conectar_usuarios(self):
         try:     
             self.conexão = mysql.connector.connect(
                 host = "localhost",
@@ -22,16 +22,16 @@ class usuáriosBD():
             )
 
             self.cursor = self.conexão.cursor()
-            self.cursor.execute("CREATE DATABASE IF NOT EXISTS usuarios_bd")
-            print("Database usuarios_bd criada!")
-            self.cursor.execute("USE usuarios_bd")
-            print("Database usuarios_bd em uso!")
+            self.cursor.execute("CREATE DATABASE IF NOT EXISTS gest_usuarios")
+            print("Database gest_usuarios criada!")
+            self.cursor.execute("USE gest_usuarios")
+            print("Database gest_usuarios em uso!")
 
             
         except mysql.connector.Error as e:
             print(f"Erro ao conectar ao MySQL: {e}")
 
-    def criarTabelaUsuários(self):
+    def criar_tabela_usuários(self):
         try:
             self.cursor.execute("""CREATE TABLE IF NOT EXISTS Usuarios(
                                 usuarioID INT AUTO_INCREMENT PRIMARY KEY,
@@ -45,7 +45,7 @@ class usuáriosBD():
             print(f"Erro ao criar tabela usuarios: {e}")
 
 
-    def criptografarSenha(self):
+    def criptografar_senha(self):
         try:
             complemento = bcrypt.gensalt()
             nova_senha = bcrypt.hashpw(self.senhaUsuário.encode('utf-8'), complemento)
