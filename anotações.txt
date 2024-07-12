@@ -1,0 +1,12 @@
+=== Descrição dos tipos de produtos ===
+
+Eletrônicos
+
+    -> Hardwares (
+        Placas de vídeo, Processadores, Memórias RAM, Placas-mãe, SSD, HD, Fontes, Coolers
+    )
+
+    -> Periféricos (
+        Teclados, mouses, mousepads, cadeiras, 
+    )
+

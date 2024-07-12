@@ -54,7 +54,7 @@ class gerenciadorBD():
         self.cursor.execute("""CREATE TABLE IF NOT EXISTS Produtos(
                             produtoID INT AUTO_INCREMENT PRIMARY KEY,
                             nomeProduto VARCHAR(255) NOT NULL,
-                            descricao TEXT,
+                            tipoProduto VARCHAR(255) NOT NULL,
                             categoria VARCHAR(255) NOT NULL, 
                             valorUnitario DECIMAL(10, 2) NOT NULL,
                             qtdEstoque INT NOT NULL,
@@ -64,8 +64,8 @@ class gerenciadorBD():
         
         self.conexao.commit()
 
-    def inserirProduto(self):
-        pass
+    def cadastroProduto(self):
+        pass    
 
     def inserirFornecedor(self):
         pass
@@ -73,4 +73,5 @@ class gerenciadorBD():
     def atualizarVendas(self):
         pass
         
+# ==== testes ==== 
 app = gerenciadorBD()

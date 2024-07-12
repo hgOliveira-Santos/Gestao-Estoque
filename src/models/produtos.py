@@ -12,3 +12,4 @@ class Produtos():
     def atualizaQuantidadeEstoque(self, quantidade):
         self.qtdEstoque = quantidade
     
+    
