@@ -33,8 +33,6 @@ class gerenciadorBD():
         self.cursor.execute("""CREATE TABLE IF NOT EXISTS Fornecedores(
                             fornecedorID INT AUTO_INCREMENT PRIMARY KEY,
                             nomeFornecedor VARCHAR(255) NOT NULL,
-                            cidade VARCHAR(255) NOT NULL,
-                            regiao VARCHAR(255) NOT NULL,
                             contato VARCHAR(255) NOT NULL)""")
         
         self.conexao.commit()
