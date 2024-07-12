@@ -1,14 +1,15 @@
 import mysql.connector
-from database import GestaoEstoque
 
-class InventárioBD(GestaoEstoque):
+class InventárioBD():
     def __init__(self, host="localhost", user="root", password=""):
-        super().__init__(host, user, password)
-        self.conexao = None
-        self.cursor = None
-        self.conectar_bd()
+            self.host = host
+            self.user = user
+            self.password = password
+            self.conexao = None
+            self.cursor = None
+            self.conectar_inventário()
         
-    def conectar_bd(self):
+    def conectar_inventário(self):
         try:
             self.conexao = mysql.connector.connect(
                 host=self.host,
@@ -17,14 +18,14 @@ class InventárioBD(GestaoEstoque):
             )
 
             self.cursor = self.conexao.cursor()
-            self.cursor.execute("CREATE DATABASE IF NOT EXISTS inventario_bd")
-            print("Database 'inventario_bd' criada!")
-            self.cursor.execute("USE inventario_bd")
-            print("Database 'inventario_bd' em uso!")
+            self.cursor.execute("CREATE DATABASE IF NOT EXISTS gest_inventario")
+            print("Database 'gest_inventario' criada!")
+            self.cursor.execute("USE gest_inventario")
+            print("Database 'gest_inventario' em uso!")
 
-            self.criarTabelaFornecedores()
-            self.criarTabelaVendas()
-            self.criarTabelaProdutos()
+            self.criar_tabela_fornecedores()
+            self.criar_tabela_vendas()
+            self.criar_tabela_produtos()
             print("Tabelas criadas!")
 
             self.conexao.commit()
@@ -32,7 +33,7 @@ class InventárioBD(GestaoEstoque):
         except mysql.connector.Error as e:
             print(f"Erro ao conectar ao MySQL: {e}")
 
-    def criarTabelaFornecedores(self):
+    def criar_tabela_fornecedores(self):
         try:
             self.cursor.execute("""CREATE TABLE IF NOT EXISTS Fornecedores(
                                 fornecedorID INT AUTO_INCREMENT PRIMARY KEY,
@@ -44,7 +45,7 @@ class InventárioBD(GestaoEstoque):
         except mysql.connector.Error as e:
             print(f"Erro ao criar tabela Fornecedores: {e}")
 
-    def criarTabelaVendas(self):
+    def criar_tabela_vendas(self):
         try:
             self.cursor.execute("""CREATE TABLE IF NOT EXISTS Vendas(
                                 vendaID INT AUTO_INCREMENT PRIMARY KEY,
@@ -59,7 +60,7 @@ class InventárioBD(GestaoEstoque):
         except mysql.connector.Error as e:
             print(f"Erro ao criar tabela Vendas: {e}")
 
-    def criarTabelaProdutos(self):
+    def criar_tabela_produtos(self):
         try:
             self.cursor.execute("""CREATE TABLE IF NOT EXISTS Produtos(
                                 produtoID INT AUTO_INCREMENT PRIMARY KEY,
@@ -77,7 +78,7 @@ class InventárioBD(GestaoEstoque):
         except mysql.connector.Error as e:
             print(f"Erro ao criar tabela Produtos: {e}")
 
-    def cadastroProduto(self, produto, tipo, categoria, valor, quantidade, id_fornecedor=None, nome_fornecedor=None):
+    def cadastro_produto(self, produto, tipo, categoria, valor, quantidade, id_fornecedor=None, nome_fornecedor=None):
         try:
             if id_fornecedor is None or nome_fornecedor is None:
                 print("É necessário fornecer ID e nome do fornecedor.")
@@ -93,7 +94,7 @@ class InventárioBD(GestaoEstoque):
         except mysql.connector.Error as e:
             print(f"Erro ao cadastrar produto: {e}")
 
-    def inserirFornecedor(self, nome_fornecedor, contato_fornecedor):
+    def inserir_produto(self, nome_fornecedor, contato_fornecedor):
         try:
             query = """INSERT INTO Fornecedores (nomeFornecedor, contato)
                     VALUES (%s, %s)"""
@@ -105,9 +106,9 @@ class InventárioBD(GestaoEstoque):
         except mysql.connector.Error as e:
             print(f"Erro ao inserir fornecedor: {e}")
 
-    def atualizarVendas(self):
+    def atualiza_vendas(self):
         pass
 
-app = inventárioBD()
-app.cadastroProduto("g502", "Mouse", "Periferico", 450.00, 120)
-app.cadastroProduto("Deathadder v2", "Mouse", "Periferico", 399.90, 200, 1, "Razer")
+app = InventárioBD()
+app.cadastro_produto("g502", "Mouse", "Periferico", 450.00, 120)
+app.cadastro_produto("Deathadder v2", "Mouse", "Periferico", 399.90, 200, 1, "Razer")
