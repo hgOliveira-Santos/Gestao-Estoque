@@ -1,12 +1,33 @@
 === Descrição dos tipos de produtos ===
 
-Eletrônicos
+Eletrônicos:
 
     -> Hardwares (
-        Placas de vídeo, Processadores, Memórias RAM, Placas-mãe, SSD, HD, Fontes, Coolers
+        Placas de vídeo, Processadores, Memórias RAM, Placas-mãe, SSD, HD, Fontes, Coolers, Gabinetes
     )
 
     -> Periféricos (
-        Teclados, mouses, mousepads, cadeiras, 
+        Teclados, mouses, mousepads, Headsets, Fones de ouvido, Webcams
     )
 
+    -> Acessórios (
+        Cabos e adaptadores, Carregadores
+    )
+
+Produtos de Informática:
+
+    -> Notebooks
+    -> Monitores
+    -> Smartphones
+    -> Tablets
+    -> Smartwatches
+
+Produtos Gaming:
+
+    -> Consoles(
+        Atributos: (Marca, Modelo)
+    )
+    -> Jogos(
+        Plataformas compatíveis
+    )
+    -> Cadeiras
