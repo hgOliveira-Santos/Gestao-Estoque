@@ -1,7 +1,7 @@
 import mysql.connector
 import bcrypt
 
-class usuáriosBD():
+class UsuáriosBD():
     def __init__(self, nome, email, data, senha):
         self.nomeUsuário = nome
         self.emailUsuário = email
@@ -55,4 +55,4 @@ class usuáriosBD():
         except Exception as e:
             print(f"Erro ao criptografar senha: {e}")
 
-app = usuáriosBD("Hugo", "hgo2s@gmail.com", "2024/07/12", "hgzx7")
+app = UsuáriosBD("Hugo", "hgo2s@gmail.com", "2024/07/12", "hgzx7")

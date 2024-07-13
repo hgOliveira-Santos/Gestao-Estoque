@@ -80,10 +80,6 @@ class InventárioBD():
 
     def cadastro_produto(self, produto, tipo, categoria, valor, quantidade, id_fornecedor=None, nome_fornecedor=None):
         try:
-            if id_fornecedor is None or nome_fornecedor is None:
-                print("É necessário fornecer ID e nome do fornecedor.")
-                return
-
             query = """INSERT INTO Produtos (nomeProduto, tipoProduto, categoria, valorUnitario, qtdEstoque, fornecedorID, nomeFornecedor)
                     VALUES (%s, %s, %s, %s, %s, %s, %s)"""
 
@@ -111,4 +107,4 @@ class InventárioBD():
 
 app = InventárioBD()
 app.cadastro_produto("g502", "Mouse", "Periferico", 450.00, 120)
-app.cadastro_produto("Deathadder v2", "Mouse", "Periferico", 399.90, 200, 1, "Razer")
+app.cadastro_produto("Deathadder v2", "Mouse", "Periferico", 399.90, 200)
