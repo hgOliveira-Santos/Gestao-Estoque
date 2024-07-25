@@ -1,37 +1,18 @@
 import mysql.connector
+from gestão_inventário_bd import GestãoInventárioBD
 
-class InventárioBD():
+class InventárioBD(GestãoInventárioBD):
     def __init__(self, host="localhost", user="root", password=""):
-            self.host = host
-            self.user = user
-            self.password = password
-            self.conexao = None
-            self.cursor = None
-            self.conectar_inventário()
-        
-    def conectar_inventário(self):
-        try:
-            self.conexao = mysql.connector.connect(
-                host=self.host,
-                user=self.user,
-                password=self.password
-            )
+        super().__init__(host, user, password)
+        self.criar_tabelas()
 
-            self.cursor = self.conexao.cursor()
-            self.cursor.execute("CREATE DATABASE IF NOT EXISTS gest_inventario")
-            print("Database 'gest_inventario' criada!")
-            self.cursor.execute("USE gest_inventario")
-            print("Database 'gest_inventario' em uso!")
+    def criar_tabelas(self):
+        self.criar_tabela_fornecedores()
+        self.criar_tabela_vendas()
+        self.criar_tabela_produtos()
+        print("Tabelas criadas!")
 
-            self.criar_tabela_fornecedores()
-            self.criar_tabela_vendas()
-            self.criar_tabela_produtos()
-            print("Tabelas criadas!")
-
-            self.conexao.commit()
-
-        except mysql.connector.Error as e:
-            print(f"Erro ao conectar ao MySQL: {e}")
+        self.conexão.commit()
 
     def criar_tabela_fornecedores(self):
         try:
@@ -40,7 +21,7 @@ class InventárioBD():
                                 nomeFornecedor VARCHAR(255) NOT NULL,
                                 contato VARCHAR(255) NOT NULL)""")
             
-            self.conexao.commit()
+            self.conexão.commit()
 
         except mysql.connector.Error as e:
             print(f"Erro ao criar tabela Fornecedores: {e}")
@@ -55,7 +36,7 @@ class InventárioBD():
                                 quantidadeVendida INT NOT NULL,
                                 valorTotal DECIMAL(10, 2) NOT NULL)""")
             
-            self.conexao.commit()
+            self.conexão.commit()
 
         except mysql.connector.Error as e:
             print(f"Erro ao criar tabela Vendas: {e}")
@@ -73,7 +54,7 @@ class InventárioBD():
                                 nomeFornecedor VARCHAR(255),
                                 FOREIGN KEY (fornecedorID) REFERENCES Fornecedores(fornecedorID))""")
             
-            self.conexao.commit()
+            self.conexão.commit()
 
         except mysql.connector.Error as e:
             print(f"Erro ao criar tabela Produtos: {e}")
@@ -85,7 +66,7 @@ class InventárioBD():
 
             valores = (produto, tipo, categoria, valor, quantidade, id_fornecedor, nome_fornecedor)
             self.cursor.execute(query, valores)
-            self.conexao.commit()
+            self.conexão.commit()
 
         except mysql.connector.Error as e:
             print(f"Erro ao cadastrar produto: {e}")
@@ -97,7 +78,7 @@ class InventárioBD():
             valores = (nome_fornecedor, contato_fornecedor)
 
             self.cursor.execute(query, valores)
-            self.conexao.commit()
+            self.conexão.commit()
 
         except mysql.connector.Error as e:
             print(f"Erro ao inserir fornecedor: {e}")

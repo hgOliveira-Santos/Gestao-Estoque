@@ -5,7 +5,7 @@ class GestãoInventárioBD():
             self.host = host
             self.user = user
             self.password = password
-            self.conexao = None
+            self.conexão = None
             self.cursor = None
             self.conectar_inventário()
 
