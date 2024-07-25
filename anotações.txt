@@ -1,18 +1,17 @@
 === Descrição dos tipos de produtos ===
 
-Eletrônicos:
 
-    -> Hardwares (
-        Placas de vídeo, Processadores, Memórias RAM, Placas-mãe, SSD, HD, Fontes, Coolers, Gabinetes
-    )
+-> Hardwares (
+    Placas de vídeo, Processadores, Memórias RAM, Placas-mãe, SSD, HD, Fontes, Coolers, Gabinetes
+)
 
-    -> Periféricos (
-        Teclados, mouses, mousepads, Headsets, Fones de ouvido, Webcams
-    )
+-> Periféricos (
+    Teclados, mouses, mousepads, Headsets, Fones de ouvido, Webcams
+)
 
-    -> Acessórios (
-        Cabos e adaptadores, Carregadores
-    )
+-> Acessórios (
+    Cabos e adaptadores, Carregadores
+)
 
 Produtos de Informática:
 

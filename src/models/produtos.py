@@ -1,4 +1,4 @@
-class Produtos():
+class Produto():
     def __init__(self, nome: str, descrição: str, categoria: str, valorUnitário: int, qtdEstoque: int):
         self.nomeProduto = nome
         self.descrição = descrição
