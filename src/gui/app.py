@@ -1,13 +1,10 @@
 import flet as ft
 
 def main(page):
-    page.title = "Gestão de Inventário"
+    page.title = "Gestão de Estoque"
     page.window_min_width = 400
     page.window_min_height = 600
 
-    page_width = page.width
-
-    # Função para manipular o clique do botão
     def on_button_click(index):
         print(f"Destino selecionado: {index}")
 
@@ -20,13 +17,12 @@ def main(page):
         {"icon": ft.icons.SHOW_CHART, "label": "Relatório"}
     ]
 
-    # Criar uma lista de botões com ícones e textos
-    nav_buttons = [
+    botões_barra_lateral = [
         ft.IconButton(
             content=ft.Row(
                 controls=[
-                    ft.Icon(item["icon"], size=24),  # Ajuste o tamanho do ícone conforme necessário
-                    ft.Text(value=item["label"], size=20)  # Ajuste o tamanho da fonte aqui
+                    ft.Icon(item["icon"], size=24),
+                    ft.Text(value=item["label"], size=20)  
                 ],
                 alignment=ft.MainAxisAlignment.START
             ),
@@ -39,33 +35,57 @@ def main(page):
         for i, item in enumerate(nav_items)
     ]
 
+    barra_lateral = ft.Container(
+                        bgcolor=ft.colors.DEEP_PURPLE_800,
+                        margin=ft.Margin(top=-10, bottom=-10, left=-10, right=-10),
+                        width=page.width * 0.25,
+                        expand=False,
+                        content=ft.Container(
+                            bgcolor=ft.colors.DEEP_PURPLE_800,
+                            margin=ft.Margin(top=90, bottom=-10, left=20, right=20),
+                            content=ft.Column(
+                                controls=botões_barra_lateral,
+                                spacing=15,
+                                alignment=ft.MainAxisAlignment.START,
+                                horizontal_alignment=ft.CrossAxisAlignment.START
+                            )
+                        )
+                    )
+    
+    cabeçalho = ft.Container(
+                    bgcolor=ft.colors.BLACK38,
+                    margin=ft.Margin(top=-10, bottom=0, left=0, right=-10),
+                    height=60,
+                    content=ft.Row(
+                        controls=[
+                            ft.Text(value="Tech Essentials", size=20, font_family="Inter", color=ft.colors.WHITE)
+                        ],
+                        alignment=ft.MainAxisAlignment.CENTER
+                    )
+                )
+    
+    início = ft.Container(
+                bgcolor=ft.colors.WHITE,
+                expand=True,
+                margin=ft.Margin(top=-10, bottom=-10, left=0, right=-10),
+            )   
+
     page.add(
         ft.Row(
             controls=[
-                ft.Container(
-                    bgcolor=ft.colors.DEEP_PURPLE_800,
-                    margin=ft.Margin(top=-10, bottom=-10, left=-10, right=-10),
-                    width=page.width*0.25,
-                    expand=False,
-                    content=ft.Container(
-                        bgcolor=ft.colors.DEEP_PURPLE_800,
-                        margin=ft.Margin(top=80, bottom=-10, left=20, right=20),
-                        content=ft.Column(
-                            controls=nav_buttons,
-                            spacing=15,
-                            alignment=ft.MainAxisAlignment.START,
-                            horizontal_alignment=ft.CrossAxisAlignment.START
-                        )
-                    )
-                ),
-                ft.Container(
-                    bgcolor=ft.colors.BLACK38,
-                    margin=ft.Margin(top=-10, bottom=-10, left=0, right=-10),
+                barra_lateral,
+                ft.Column(
+                    controls=[
+                        cabeçalho,
+                        início
+                    ],
                     expand=True
                 )
             ],
             expand=True
         )
     )
+
+    
 
 ft.app(target=main)
