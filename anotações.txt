@@ -13,7 +13,7 @@
     Cabos e adaptadores, Carregadores
 )
 
-Produtos de Informática:
+Eletronicos:
 
     -> Notebooks
     -> Monitores

@@ -1,7 +1,7 @@
 import mysql.connector
-from gestão_inventário_bd import GestãoInventárioBD
+from utils.conexão_estoque import ConexãoEstoqueBD
 
-class InventárioBD(GestãoInventárioBD):
+class EstoqueBD(ConexãoEstoqueBD):
     def __init__(self, host="localhost", user="root", password=""):
         super().__init__(host, user, password)
         self.criar_tabelas()

@@ -1,15 +1,15 @@
 import mysql.connector
 
-class GestãoInventárioBD():
+class ConexãoEstoqueBD():
     def __init__(self, host="localhost", user="root", password=""):
             self.host = host
             self.user = user
             self.password = password
             self.conexão = None
             self.cursor = None
-            self.conectar_inventário()
+            self.conectar_estoque()
 
-    def conectar_inventário(self):
+    def conectar_estoque(self):
         try:
             self.conexão = mysql.connector.connect(
                 host=self.host,
@@ -18,10 +18,10 @@ class GestãoInventárioBD():
             )
 
             self.cursor = self.conexão.cursor()
-            self.cursor.execute("CREATE DATABASE IF NOT EXISTS gestao_inventario")
-            print("Database 'gestao_inventario' criada!")
-            self.cursor.execute("USE gestao_inventario")
-            print("Database 'gestao_inventario' em uso!")
+            self.cursor.execute("CREATE DATABASE IF NOT EXISTS gestao_estoque")
+            print("Database 'gestao_estoque' criada!")
+            self.cursor.execute("USE gestao_estoque")
+            print("Database 'gestao_estoque' em uso!")
 
             self.conexão.commit()
 

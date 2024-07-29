@@ -1,8 +1,8 @@
 import mysql.connector
 import bcrypt
-from gestão_inventário_bd import GestãoInventárioBD
+from utils.conexão_estoque import ConexãoEstoqueBD
 
-class UsuáriosBD(GestãoInventárioBD):
+class UsuáriosBD(ConexãoEstoqueBD):
     def __init__(self, host="localhost", user="root", password="", nome=None, email=None, data=None, senha=None):
         super().__init__(host, user, password)
         self.nomeUsuário = nome
