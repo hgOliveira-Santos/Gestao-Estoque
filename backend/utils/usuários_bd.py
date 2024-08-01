@@ -1,6 +1,6 @@
 import mysql.connector
 import bcrypt
-from utils.conexão_estoque import ConexãoEstoqueBD
+from conexão_estoque import ConexãoEstoqueBD
 
 class UsuáriosBD(ConexãoEstoqueBD):
     def __init__(self, host="localhost", user="root", password="", nome=None, email=None, data=None, senha=None):

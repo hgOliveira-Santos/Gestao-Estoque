@@ -1,6 +1,5 @@
 import mysql.connector
-from utils.conexão_estoque import ConexãoEstoqueBD
-
+from conexão_estoque import ConexãoEstoqueBD
 class EstoqueBD(ConexãoEstoqueBD):
     def __init__(self, host="localhost", user="root", password=""):
         super().__init__(host, user, password)
@@ -20,7 +19,7 @@ class EstoqueBD(ConexãoEstoqueBD):
                                 fornecedorID INT AUTO_INCREMENT PRIMARY KEY,
                                 nomeFornecedor VARCHAR(255) NOT NULL,
                                 contato VARCHAR(255) NOT NULL)""")
-            
+
             self.conexão.commit()
 
         except mysql.connector.Error as e:
@@ -35,7 +34,7 @@ class EstoqueBD(ConexãoEstoqueBD):
                                 valorUnitario DECIMAL(10, 2) NOT NULL,
                                 quantidadeVendida INT NOT NULL,
                                 valorTotal DECIMAL(10, 2) NOT NULL)""")
-            
+
             self.conexão.commit()
 
         except mysql.connector.Error as e:
@@ -53,7 +52,7 @@ class EstoqueBD(ConexãoEstoqueBD):
                                 fornecedorID INT,
                                 nomeFornecedor VARCHAR(255),
                                 FOREIGN KEY (fornecedorID) REFERENCES Fornecedores(fornecedorID))""")
-            
+
             self.conexão.commit()
 
         except mysql.connector.Error as e:
@@ -86,6 +85,7 @@ class EstoqueBD(ConexãoEstoqueBD):
     def atualiza_vendas(self):
         pass
 
-app = InventárioBD()
-app.cadastro_produto("g502", "Mouse", "Periferico", 450.00, 120)
-app.cadastro_produto("Deathadder v2", "Mouse", "Periferico", 399.90, 200)
+
+app = EstoqueBD()
+app.cadastro_produto("g203", "Mouse", "Periferico", 340.00, 100)
+app.cadastro_produto("Kraken v2", "Headset", "Periferico", 599.90, 250)
